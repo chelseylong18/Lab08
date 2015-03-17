@@ -39,13 +39,13 @@ bool Maze::traverse(int row, int col)
 
    //DO THIS
    //test that the current grid location is a space (i.e. not a wall or already tried)
-   if (                                   )
+   if (  maze->getElement(row, col) == SPACE       )			//I DID
    {
 
       //DO THIS
       //now it has been tried so mark it as tried
 
-
+		maze->setElement(row, col, TRIED);					//I DID
 
 
       Sleep(75);  //slow down the maze traversal
@@ -56,7 +56,7 @@ bool Maze::traverse(int row, int col)
       int height = maze->getNumRows();
       int width = maze->getNumCols();
 
-      if (                     )
+      if ( row == height && col == width   )				//I DID
       {
          done = true;
       }
@@ -71,19 +71,15 @@ bool Maze::traverse(int row, int col)
          //don't use row++ or column++ use row + 1 or col + 1, etc.
          //IMPORTANT: make use of the boolean that is returned every time you call traverse
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+		bool trav, trav2, trav3, trav4;
+		 
+		done = traverse (row+1, col);
+		if (!done)
+			done = traverse(row, col+1);
+		if(!done)
+			done = traverse(row, col-1);
+		if (!done)
+			done = traverse(row-1, col);
 
 
       }
@@ -94,7 +90,7 @@ bool Maze::traverse(int row, int col)
          //DO THIS
          //mark the path taken as the solution path
 
-
+		maze->setElement(row, col, PATH);				//I DID
 
          gui->update();
       }
@@ -103,7 +99,7 @@ bool Maze::traverse(int row, int col)
       {
          //DO THIS
 
-
+		maze->setElement(row,col, BACKTRACK);				//I DID
 
          Sleep(75);
          gui->update();
